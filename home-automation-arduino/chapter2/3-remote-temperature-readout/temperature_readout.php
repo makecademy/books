@@ -1,13 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Temperature readout</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<?php 
 
-<?php echo phpversion(); ?>
+$db = new SQLite3('test.db');
 
-</body>
-</html>
+$results = $db->query('SELECT Measurement, Temperature FROM Temperatures');
+$i = 0;
+while($row = $results->fetchArray())
+{
+    $i++;
+    $dataset[] = array($row['Measurement'],$row['Temperature']);
+}
+
+echo json_encode($dataset);
+
+?>
