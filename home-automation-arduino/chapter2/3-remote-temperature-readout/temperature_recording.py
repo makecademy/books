@@ -32,7 +32,6 @@ while (True):
     
 		cur = con.cursor()    
 		now = datetime.datetime.now()
-		#record_time = now.strftime("%d-%m-%Y %H:%M:%S")
 		cur.execute("INSERT INTO Temperatures VALUES (?, ?)", (i, data))
 
 	i+=1
