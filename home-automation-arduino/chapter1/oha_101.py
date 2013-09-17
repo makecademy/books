@@ -1,10 +1,11 @@
 import serial
 import time
 import numpy
+import sys
 
 # Is the serial port available ?
 try:
-    ser = serial.Serial('/dev/tty.usbmodem1411', 9600)
+    ser = serial.Serial('/dev/tty.usbmodem1a12141', 9600)
     time.sleep(2)
 except:
     print 'No Arduino found'
