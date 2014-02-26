@@ -9,27 +9,29 @@
 #include <string.h>
 #include "DHT.h"
 
-// DHT instance
-DHT dht;
+// DHT11 sensor pins
+#define DHTPIN 7 
+#define DHTTYPE DHT11
 
+// DHT instance
+DHT dht(DHTPIN, DHTTYPE);
+                                         
 void setup(void)
 {
  
   // Initialize DHT sensor
-  dht.setup(4);
+  dht.begin();
   
-  Serial.begin(9600);
-    
+  Serial.begin(115200);
+  
 }
   
 void loop(void)
 {
   
-    delay(dht.getMinimumSamplingPeriod());
-  
     // Measure the humidity & temperature
-    float h = dht.getHumidity();
-    float t = dht.getTemperature();
+    float h = dht.readHumidity();
+    float t = dht.readTemperature();
    
     // Transform to String
     String temp = String((int) t);
@@ -40,7 +42,5 @@ void loop(void)
     Serial.print("Humidity: ");
     Serial.println(hum);
     Serial.println("");
-    
-    delay(2000);
   
 }
